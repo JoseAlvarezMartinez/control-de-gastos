@@ -1,8 +1,11 @@
-import { useState } from "react"
+import { FormEvent, useContext, useState } from "react"
+import { BudgetContext, ContextProvider } from "../context/BudgetContext"
+
 
 const BudgetForm = () => {
 
     const [budget, setBudget] = useState(0)
+    const {dispatch} = useContext(ContextProvider)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBudget(Number(e.target.value))
@@ -12,8 +15,15 @@ const BudgetForm = () => {
         return budget <= 0
     }
 
+    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        dispatch({type:"agregar-presupuesto",payload:{budget}})
+
+    }
+
     return (
-        <form onSubmit={e => e.preventDefault()} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5">
             <div className="flex flex-col space-y-5">
                 <label htmlFor="budget" className="text-4xl text-blue-600 font-bold text-center">Definir Presupuesto</label>
                 <input

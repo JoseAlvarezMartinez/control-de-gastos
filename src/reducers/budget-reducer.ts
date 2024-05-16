@@ -13,7 +13,6 @@ export const initialState: BudgetState = {
 export const BudgetReducer = (state: BudgetState = initialState, action: ActionTypes) => {
     switch(action.type){
         case "agregar-presupuesto":
-            console.log(state)
             return {
                 ...state,
                 budget:action.payload.budget
