@@ -1,28 +1,23 @@
-export type ActionTypes =
-    | { type: "agregar-presupuesto", payload: { budget: number } }
-    | { type: "edit-modal", payload: { modalState: boolean } }
+type ActionTypes =
+    | { type: "[ADD Budget]", payload: { budget: number } }
 
-export interface BudgetState {
-    budget: number,
-    isModal: boolean
+type BudgetState = {
+    budget: number
 }
 
 export const initialState: BudgetState = {
-    budget: 0,
-    isModal: false
+    budget: 0
 }
 
 export const BudgetReducer = (state: BudgetState = initialState, action: ActionTypes) => {
+
     switch (action.type) {
-        case "agregar-presupuesto":
+        case "[ADD Budget]":
             return {
                 ...state,
                 budget: action.payload.budget
-            }
-        case "edit-modal":
-            return {
-                ...state,
-                isModal: action.payload.modalState
-            }
+            } 
+        default:
+            return state
     }
 }

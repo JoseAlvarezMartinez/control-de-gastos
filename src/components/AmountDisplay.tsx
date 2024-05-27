@@ -1,15 +1,8 @@
-import { moneyFormat } from "../helpers"
-
-interface AmountDisplayProps {
-    label: string,
-    amount: number
-}
-
-const AmountDisplay = ({ label, amount }: AmountDisplayProps) => {
+const AmountDisplay = () => {
     return (
         <p className="text-2xl text-blue-600 font-bold">
-            {label}: {""}
-            <span className="text-black">{moneyFormat(amount)}</span>
+            label: {""}
+            <span className="text-black">amount</span>
         </p>
     )
 }

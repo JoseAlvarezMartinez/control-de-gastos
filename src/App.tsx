@@ -1,12 +1,5 @@
-import { useContext } from "react"
-import { ContextProvider } from "./context/BudgetContext"
 import BudgetForm from "./components/BudgetForm"
-import BudgetTracker from "./components/BudgetTracker"
-import ExpenseModal from "./components/ExpenseModal"
 function App() {
-
-  const {state:{budget}} = useContext(ContextProvider)
-
   return (
     <>
       <header className="bg-blue-600 py-8 max-h-72">
@@ -15,9 +8,9 @@ function App() {
       </header>
 
       <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 p-10">
-        {budget <= 0 ? <BudgetForm /> : <BudgetTracker />}
+        <BudgetForm />
       </div>
-      <ExpenseModal />
+
 
     </>
   )
