@@ -1,12 +1,15 @@
 export type ActionTypes =
     | { type: "[ADD Budget]", payload: { budget: number } }
+    | { type: "[MODAL open/close]", payload: { isOpen: boolean } }
 
 export type BudgetState = {
-    budget: number
+    budget: number,
+    isOpen:boolean
 }
 
 export const initialState: BudgetState = {
-    budget: 0
+    budget: 0,
+    isOpen:false
 }
 
 export const BudgetReducer = (state: BudgetState = initialState, action: ActionTypes) => {
@@ -16,7 +19,12 @@ export const BudgetReducer = (state: BudgetState = initialState, action: ActionT
             return {
                 ...state,
                 budget: action.payload.budget
-            } 
+            }
+        case "[MODAL open/close]":
+            return {
+                ...state,
+                isOpen: action.payload.isOpen
+            }
         default:
             return state
     }
