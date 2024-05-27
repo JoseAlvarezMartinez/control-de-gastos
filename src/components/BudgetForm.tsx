@@ -1,17 +1,27 @@
-import { ChangeEvent, useMemo, useState } from "react"
+import { ChangeEvent, FormEvent, useContext, useMemo, useState } from "react"
+import { BudgetContext } from "../context/BudgetContext";
 const BudgetForm = () => {
 
     const [budget, setBudget] = useState(0);
+    const { dispatch } = useContext(BudgetContext)
+
+
+    const isValid = useMemo(() => isNaN(budget) || budget < 1, [budget]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setBudget(e.target.valueAsNumber)
     }
 
-    const isValid = useMemo(() => isNaN(budget) || budget < 1, [budget])
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
 
+        dispatch({type:"[ADD Budget]",payload:{budget}})
+    }
 
     return (
-        <form className="space-y-5">
+        <form
+            onSubmit={handleSubmit}
+            className="space-y-5">
             <div className="flex flex-col space-y-5">
                 <label htmlFor="budget" className="text-4xl text-blue-600 font-bold text-center">Definir Presupuesto</label>
                 <input

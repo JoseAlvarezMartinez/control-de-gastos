@@ -1,7 +1,7 @@
-type ActionTypes =
+export type ActionTypes =
     | { type: "[ADD Budget]", payload: { budget: number } }
 
-type BudgetState = {
+export type BudgetState = {
     budget: number
 }
 
